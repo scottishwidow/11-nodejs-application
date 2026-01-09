@@ -4,6 +4,10 @@
   "description": "Sample NestJS backend app for CI demos",
   "license": "MIT",
   "private": true,
+  "author": {
+    "name": "scottishwidow", 
+    "email": "mike.voznyanskix@gmail.com"
+  },
   "scripts": {
     "clean": "rm -rf dist coverage",
     "build": "tsc -p tsconfig.build.json",
