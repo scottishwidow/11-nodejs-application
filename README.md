@@ -1,6 +1,6 @@
 # NestJS CI Sample
 
-A minimal NestJS backend and unit test suite intended for continuous integration demos.
+A minimal NestJS backend and unit test suite intended for future demos.
 
 ## Requirements
 
