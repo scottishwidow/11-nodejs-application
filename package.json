@@ -1,7 +1,7 @@
 {
-  "name": "nestjs-ci-sample",
+  "name": "nestjs-sample-app",
   "version": "1.0.0",
-  "description": "Sample NestJS backend app for CI demos",
+  "description": "Sample NestJS backend application for demos",
   "license": "MIT",
   "private": true,
   "author": {
@@ -13,6 +13,11 @@
     "build": "tsc -p tsconfig.build.json",
     "start": "node dist/main.js",
     "start:dev": "ts-node-dev --respawn --transpile-only src/main.ts",
+    "lint": "eslint \"{src,test}/**/*.ts\"",
+    "lint:fix": "eslint --fix \"{src,test}/**/*.ts\"",
+    "lint:ci": "eslint --max-warnings 0 \"{src,test}/**/*.ts\"",
+    "format": "prettier --write \"{src,test}/**/*.{ts,js,json,md}\"",
+    "format:check": "prettier --check \"{src,test}/**/*.{ts,js,json,md}\"",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
@@ -24,10 +29,17 @@
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.4.0",
+    "@typescript-eslint/parser": "^8.4.0",
     "@nestjs/testing": "^10.3.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.7",
+    "eslint": "^9.3.0",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.9.0",
     "jest": "^29.7.0",
+    "prettier": "^3.3.2",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",

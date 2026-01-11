@@ -1,6 +1,6 @@
 # NestJS CI Sample
 
-A minimal NestJS backend and unit test suite intended for continuous integration demos.
+A minimal NestJS backend and unit test suite intended for future demos.
 
 ## Requirements
 
@@ -29,8 +29,3 @@ export APP_VERSION="1.0.0"
 
 - `GET /` returns `{ "message": "<APP_VERSION>" }`.
 - `GET /health` returns a simple health payload.
-
-## Notes for CI
-
-- `pnpm test` will fail if `APP_VERSION` is missing or empty.
-- Typical pipeline order: install -> test -> build.
