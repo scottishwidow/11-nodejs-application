@@ -29,8 +29,3 @@ export APP_VERSION="1.0.0"
 
 - `GET /` returns `{ "message": "<APP_VERSION>" }`.
 - `GET /health` returns a simple health payload.
-
-## Notes for CI
-
-- `pnpm test` will fail if `APP_VERSION` is missing or empty.
-- Typical pipeline order: install -> test -> build.
