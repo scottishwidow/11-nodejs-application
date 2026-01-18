@@ -50,9 +50,7 @@ export class DbService implements OnModuleInit, OnModuleDestroy {
     }
 
     if (!process.env.DATABASE_HOST || !process.env.DATABASE_USER || !process.env.DATABASE) {
-      throw new Error(
-        'DATABASE_HOST, DATABASE_USER, and DATABASE must be set for Postgres',
-      );
+      throw new Error('DATABASE_HOST, DATABASE_USER, and DATABASE must be set for Postgres');
     }
 
     const port = process.env.DATABASE_PORT ? Number(process.env.DATABASE_PORT) : undefined;
