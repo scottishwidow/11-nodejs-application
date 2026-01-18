@@ -1,8 +1,14 @@
 import { Pool } from 'pg';
 import { DbService, MessageRow } from '../src/db/db.service';
 
+type PoolMockInstance = {
+  __config: unknown;
+  query: jest.Mock;
+  end: jest.Mock;
+};
+
 jest.mock('pg', () => {
-  const PoolMock = jest.fn().mockImplementation(function (this: any, config: unknown) {
+  const PoolMock = jest.fn().mockImplementation(function (this: PoolMockInstance, config: unknown) {
     this.__config = config;
     this.query = jest.fn();
     this.end = jest.fn();
@@ -29,7 +35,8 @@ describe('DbService', () => {
     process.env = originalEnv;
   });
 
-  const getPoolInstance = () => (Pool as unknown as jest.Mock).mock.instances[0] as any;
+  const getPoolInstance = () =>
+    (Pool as unknown as jest.Mock).mock.instances[0] as PoolMockInstance;
 
   it('uses DATABASE_URL when provided', () => {
     process.env.DATABASE_URL = 'postgres://user:pass@host/db';
