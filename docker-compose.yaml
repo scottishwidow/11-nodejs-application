@@ -9,6 +9,8 @@ services:
     configs:
       - source: nginx_default_conf
         target: /etc/nginx/conf.d/default.conf
+    networks:
+      - app-network
 
   nest-app:
     build:
@@ -24,6 +26,9 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    networks:
+      - app-network
+      - db-network
 
   postgres:
     container_name: postgres
@@ -36,11 +41,14 @@ services:
       - 5432:5432
     volumes:
       - db-data:/var/lib/postgres/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
       interval: 10s
       timeout: 15s
       retries: 10
+    networks:
+      - db-network
 
 volumes:
   db-data:
@@ -48,3 +56,8 @@ volumes:
 configs:
   nginx_default_conf:
     file: ./nginx/default.conf
+
+networks:
+  app-network:
+  db-network:
+    internal: true
