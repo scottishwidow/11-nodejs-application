@@ -36,8 +36,13 @@ export APP_VERSION="1.0.0"
 ## Database
 
 The application uses PostgreSQL via the `pg` driver. Provide either a
-`DATABASE_URL` or the standard `PG*` variables (`PGHOST`, `PGPORT`, `PGUSER`,
-`PGPASSWORD`, `PGDATABASE`).
+`DATABASE_URL` or the explicit connection fields the app reads:
+`DATABASE_HOST`, `DATABASE_PORT` (optional), `DATABASE_USER`,
+`DATABASE_PASSWORD`, and `DATABASE`.
+
+The Docker Compose setup expects `POSTGRES_USER`, `POSTGRES_PASSWORD`,
+and `POSTGRES_DB` for the database container, while the NestJS app uses the
+`DATABASE_*` variables above. See `.env` for the default local values.
 
 ### Init SQL (use for Docker Compose init container)
 
