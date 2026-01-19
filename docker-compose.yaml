@@ -21,8 +21,9 @@ services:
       - DATABASE_PASSWORD=${DATABASE_PASSWORD}
       - DATABASE_HOST=${DATABASE_HOST}
       - DATABASE=${DATABASE}
+      - APP_VERSION=${APP_VERSION}
     ports:
-      - 3000:3000
+      - 3000
     depends_on:
       postgres:
         condition: service_healthy
@@ -38,10 +39,10 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
     ports:
-      - 5432:5432
+      - 5432
     volumes:
       - db-data:/var/lib/postgres/data
-      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./compose-config/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
       interval: 10s
@@ -55,7 +56,7 @@ volumes:
 
 configs:
   nginx_default_conf:
-    file: ./nginx/default.conf
+    file: ./compose-config/nginx/default.conf
 
 networks:
   app-network:
