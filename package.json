@@ -20,7 +20,7 @@
     "format:check": "prettier --check \"{src,test}/**/*.{ts,js,json,md}\"",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "dependencies": {
     "@nestjs/common": "^10.3.0",
